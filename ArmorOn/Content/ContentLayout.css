@@ -1,0 +1,35 @@
+﻿p {
+    font-family: 'Roboto Slab';
+    font-size: 16px;
+    text-align: justify;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Roboto Slab';
+    font-weight: 700;
+}
+
+.newstylelist {
+    font-family: 'Roboto Slab';
+    font-size: 16px;
+    text-align: justify;
+}
+
+table {
+    font-family: 'Roboto Slab';
+    font-size: 14px;
+    text-align: justify;
+}
+
+.area {
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    background-color: rgba(0,0,0,0.6);
+
+}
+
+​

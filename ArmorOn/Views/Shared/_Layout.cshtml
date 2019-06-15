@@ -1,0 +1,403 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/Images/armoronblack.png">
+    <title>Armor On Philippines</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/vegas/vegas.css" rel="stylesheet" />
+    <script src="~/Scripts/vegas/vegas.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://use.fontawesome.com/57039318b3.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
+    <style>
+        .navbar-brand,
+        .navbar-nav li a {
+            line-height: 50px;
+            height: 50px;
+            padding-top: 5px;
+        }
+
+        header {
+            background: white;
+            height: 65px;
+            color: #000000;
+        }
+
+        #nav {
+            width: 100%;
+            position: static;
+            top: -32px;
+        }
+
+            #nav.affix {
+                position: fixed;
+                top: 0;
+                z-index: 10;
+                -webkit-transition: all .6s ease-in-out;
+            }
+
+
+        @@media (min-width: 767px) {
+            .navbar-nav.nav-justified > li {
+                float: none;
+            }
+        }
+
+        .navbar-nav {
+            margin: 1px 1px;
+        }
+
+        /* customize nav style */
+        .navbar-custom {
+            background-color: #000000;
+            text-transform: uppercase;
+            border-width: 0;
+        }
+
+            .navbar-custom .navbar-nav > li > a {
+                color: white;
+                font-family: 'Roboto';
+            }
+
+            .navbar-custom .dropdown-menu {
+                right: 0;
+            }
+
+            .navbar-custom .navbar-nav > .dropdown > a .caret {
+                border-top-color: #999;
+                border-bottom-color: #999;
+            }
+
+        .navbar-collapse.in { /*3.0.2 bug workaround*/
+            overflow-y: visible;
+        }
+
+        .navbar-toggle {
+            outline: 0;
+        }
+
+        .divider {
+            height: 100px;
+        }
+
+        .panel {
+            border-width: 0;
+        }
+
+        @@media (max-width: 768px) {
+            header {
+                height: 60px;
+            }
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 0;
+            right: 6%;
+            z-index: 100;
+            background: #ffcc33;
+            font-size: 24px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+
+            .scroll-top a:link, .scroll-top a:visited {
+                color: #222;
+            }
+
+        .navbgcolor {
+            background-color: rgba(0,0,0,0.6);
+            margin-top: 0px;
+        }
+
+        .navlogo {
+            display: inline;
+        }
+
+        .navlogoafter {
+            display: inline;
+            top: 0;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="navbar navbar-custom navbar-inverse navbar-fixed-top" id="nav">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand hidden-xs" href="@Url.Action("Index")">
+                    <img src="~/Images/armoronwhite.png" id="logo" />
+                </a>
+                
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right" id="navigation">
+
+                    <li>@Html.ActionLink("Home", "", null, new { @class = "hvr-underline-from-center" })</li>
+                    <li>@Html.ActionLink("About Us", "About", null, new { @class = "hvr-underline-from-center" })</li>
+                   
+                    @*<li class="dropdown">
+                        <a class="dropdown-toggle hvr-underline-from-center" data-toggle="dropdown" >About Us<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("History", "History")</li>
+                            <li>@Html.ActionLink("Vision & Mission", "Vison")</li>                      
+                        </ul>
+                    </li>*@
+
+                    <li>@Html.ActionLink("Gallery", "Gallery", null, new { @class = "hvr-underline-from-center" })</li>
+
+                    <li class="dropdown">
+                        @*<a class="dropdown-toggle hvr-underline-from-center" data-toggle="dropdown" href="#">Shop<span class="caret"></span></a>*@
+                        <ul class="dropdown-menu">
+                            @*<li>@Html.ActionLink("College", "College")</li>*@
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("Size Chart", "SizeChart", null, new { @class = "hvr-underline-from-center" })</li>
+                    <li>@Html.ActionLink("Contact Us", "Contact", null, new { @class = "hvr-underline-from-center" })</li>
+                    <li>@Html.ActionLink("Our Clients", "Clients", null, new { @class = "hvr-underline-from-center" })</li>
+                </ul>
+
+            </div><!--/.nav-collapse -->
+        </div><!--/.container -->
+    </div>
+    @RenderBody()
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+        /* affix the navbar after scroll below header */
+        $('#nav').affix({
+            offset: {
+                top: $('header').height() - $('#nav').height()
+            }
+
+        });
+        $(window).scroll(function () {
+            var height = $(this).scrollTop();
+            var brand = $(".navbar-brand");
+            if (height > 125) {
+                $('#nav').addClass('navbgcolor')
+
+            }
+            else {
+                $('#nav').removeClass('navbgcolor')
+            }
+        });
+
+        /* highlight the top nav as scrolling occurs */
+        $('body').scrollspy({ target: '#nav' })
+        /* smooth scrolling for scroll to top */
+        $('.scroll-top').click(function () {
+            $('body,html').animate({ scrollTop: 0 }, 1000);
+        })
+
+        $('#nav .navbar-nav li>a').click(function () {
+            var link = $(this).attr('href');
+            var posi = $(link).offset().top + 20;
+            $('body,html').animate({ scrollTop: posi }, 700);
+        })
+    </script>
+
+    <footer style ="background-color: black">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold" style ="color: white; font-size: 20px; font-weight: bold">ARMOR ON PHILIPPINES</h6>
+                    <p style ="color: #a5a5a5;">
+                        To be a leader in the sportswear tailoring industry by providing the best service continued innovation and long term relationships with clients.
+                    </p>
+                </div>
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h6 style="color:white" class="text-uppercase mb-4 font-weight-bold">Shortcut Links</h6>
+                    <p>
+                        @Html.ActionLink("About Us", "About", null, new { @class = "hvr-underline-from-center" })
+                    </p>
+                    <p>
+                        @Html.ActionLink("Gallery", "Gallery", null, new { @class = "hvr-underline-from-center" })
+                    </p>                  
+                    <p>
+                        @Html.ActionLink("SizeChart", "SizeChart", null, new { @class = "hvr-underline-from-center" })
+                    </p>
+                    <p>
+                        @Html.ActionLink("Contact Us", "Contact", null, new { @class = "hvr-underline-from-center" })
+                    </p>
+                    <p>
+                        @Html.ActionLink("Clients", "Clients", null, new { @class = "hvr-underline-from-center" })
+                    </p>
+                </div>
+                <!-- Grid column -->
+                <!-- Grid column -->
+                
+
+                <!-- Grid column -->
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold" style="color:white">Contact</h6>
+                    <p style ="color: #a5a5a5;">
+                        <i class="fa fa-home mr-3"></i> 19 Gregorio Araneta Ave Quezon City, Philippines
+                    </p>
+                    <p style ="color: #a5a5a5;">
+                        <i class="fa fa-envelope mr-3"></i> tarmor.ph@gmail.com
+                    </p>
+                    <p style ="color: #a5a5a5;">
+                        <i class="fa fa-phone mr-3"></i> 02 410-9042
+                    </p>
+                   
+                </div>
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold" style="color:white">Connect With Us</h6>
+                   
+                     <p><i class="fa fa-facebook mr-3" style="color:cornflowerblue; font-size:20px"></i><a href="https://www.facebook.com/ArmorOnPH/"> Facebook</a>
+                    </p>
+                    <p><i class="fa fa-instagram mr-3"  style="color:cornflowerblue; font-size:20px"></i><a href="https://instagram.com/armor_on?utm_source=ig_profile_share&igshid=wgqjj5x22f7z">Instagram</a>
+                    </p>
+                  
+                </div>
+                <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-md-7 col-lg-8">
+
+                        <!--Copyright-->
+                        <p class="text-md-left"; style="color:white">
+                            © 2018 Copyright:
+                            <a href="@Url.Action("Index")">
+                                <strong style="color:#5c5c5c"> Armor On Philippines</strong>
+                            </a>
+                        </p>
+
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-md-5 col-lg-4 ml-lg-0">
+
+                        <!-- Social buttons -->
+                        @*<div class="text-md-right">
+                            <ul class="list-unstyled list-inline">
+                                <li class="list-inline-item">
+                                    <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                        <i class="fa fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                              
+                            </ul>
+                        </div>
+
+                    </div>*@
+                    <!-- Grid column -->
+
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    @*<footer class="">
+
+        <div class="container text-left">
+
+            <!-- Footer links -->
+            <div class="row text-center text-md-left mt-3 pb-3">
+
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Company name</h6>
+                    <p>
+                        Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur
+                        adipisicing elit.
+                    </p>
+                </div>
+                <!-- Grid column -->
+
+            
+
+                <!-- Grid column -->
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
+                    <p>
+                        <a href="#!">MDBootstrap</a>
+                    </p>
+                    <p>
+                        <a href="#!">MDWordPress</a>
+                    </p>
+                    <p>
+                        <a href="#!">BrandFlow</a>
+                    </p>
+                    <p>
+                        <a href="#!">Bootstrap Angular</a>
+                    </p>
+                </div>
+                <!-- Grid column -->
+
+          
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Useful links</h6>
+                    <p>
+                        <a href="#!">Your Account</a>
+                    </p>
+                    <p>
+                        <a href="#!">Become an Affiliate</a>
+                    </p>
+                    <p>
+                        <a href="#!">Shipping Rates</a>
+                    </p>
+                    <p>
+                        <a href="#!">Help</a>
+                    </p>
+                </div>
+
+                <!-- Grid column -->
+             
+
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+                    <p>
+                        <i class="fas fa-home mr-3"></i> New York, NY 10012, US
+                    </p>
+                    <p>
+                        <i class="fas fa-envelope mr-3"></i> info@gmail.com
+                    </p>
+                    <p>
+                        <i class="fas fa-phone mr-3"></i> + 01 234 567 88
+                    </p>
+                    <p>
+                        <i class="fas fa-print mr-3"></i> + 01 234 567 89
+                    </p>
+                </div>
+                <!-- Grid column -->
+
+            </div>
+            <!-- Footer links -->
+
+    
+         
+
+        </div>
+
+    </footer>*@
+    <!-- Footer -->
+    
+    <!-- Footer -->
+
+
+
+</body>
+</html>

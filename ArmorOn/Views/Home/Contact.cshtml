@@ -1,0 +1,95 @@
+﻿@model ArmorOn.Models.ContactModel
+@{
+    ViewBag.Title = "Contact";
+}
+<style>
+    body {
+        width: 100%;
+        height: 100%;
+        margin-top: 150px;
+        background: black;
+    }
+
+
+    h1, h2, h3 {
+        margin: 0 0 35px 0;
+        font-weight:bold;
+        color: white;
+        letter-spacing: 1px;
+    }
+
+    p {
+        margin: 0 0 25px;
+        font-size: 18px;
+        line-height: 1.6em;
+    }
+
+    a {
+        color: #26a5d3;
+    }
+
+        a:hover, a:focus {
+            text-decoration: none;
+            color: #26a5d3;
+        }
+
+    #contact {
+        background: #333333;
+        color: #f4f4f4;
+        padding-bottom: 80px;
+    }
+
+    textarea.form-control {
+        height: 100px;
+    }
+
+    .well {
+        background: #e8e8e8;
+        border: grey;
+    }
+    .btn-default {
+        font-family:'Arial Rounded MT';   
+        font-weight:bold;  
+    }
+
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="container">
+            <div class="text-center"><h2>Customer Inquiry</h2></div>
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 well well-lg">
+                    @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.FullName)
+                            @Html.TextBoxFor(m => m.FullName, new { @class = "form-control"})
+                            @Html.ValidationMessageFor(m => m.FullName)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.EmailAddress)
+                            @Html.TextBoxFor(m => m.EmailAddress, new { @class = "form-control"})
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.NumberOfUniforms)
+                            @Html.TextBoxFor(m => m.NumberOfUniforms, new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.MobileNumber)
+                            @Html.TextBoxFor(m => m.MobileNumber, new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.DateNeeded)
+                            @Html.TextBoxFor(m => m.DateNeeded, new { @class = "form-control" })
+                            <br />
+                            <div class="text-center"><button type="submit" class="btn btn-default">Submit</button></div>
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
