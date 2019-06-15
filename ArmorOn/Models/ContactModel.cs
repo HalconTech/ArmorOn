@@ -26,5 +26,8 @@ namespace ArmorOn.Models
         [Required]
         [Display(Name = "Date Needed (deadline)")]
         public DateTime DateNeeded { get; set; }
+        [Required]
+        [Display(Name = "Message")]
+        public string CustomerMessage { get; set; }
     }
 }
