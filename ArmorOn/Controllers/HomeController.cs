@@ -8,7 +8,7 @@ using System.Net.Mail;
 using System.Net;
 using System.Threading.Tasks;
 using System.IO;
-
+using CaptchaMvc.HtmlHelpers;
 namespace ArmorOn.Controllers
 {
     public class HomeController : Controller
@@ -38,7 +38,7 @@ namespace ArmorOn.Controllers
             {
                 var body = "<p>Email From: {0} ({1})</p><p>Number of Uniforms: {2}</p><p>Mobile Number: {3}</p><p>Date Needed: {4}</p><p>Message:</p><p>{5}</p>";
                 var message = new MailMessage();
-                message.To.Add(new MailAddress("manueldelafuenteee@gmail.com"));  // replace with valid value 
+                message.To.Add(new MailAddress("oliverlacap1995@gmail.com"));  // replace with valid value 
                 message.From = new MailAddress(model.EmailAddress);  // replace with valid value
                 message.Subject = "Inquiry";
                 message.Body = string.Format(body, model.FullName, model.EmailAddress,model.NumberOfUniforms,model.MobileNumber,model.DateNeeded.ToShortDateString(),model.CustomerMessage);
@@ -62,9 +62,19 @@ namespace ArmorOn.Controllers
                     smtp.Port = 587;
                     smtp.EnableSsl = true;
                     await smtp.SendMailAsync(message);
-                    return RedirectToAction("Index");
+                    if (this.IsCaptchaValid("Validate your captcha"))
+                    {
+                        return RedirectToAction("Index");        
+                    }
+                    else
+                    {
+                        ViewBag.ErrorMessage = "Please verify captcha";
+                        return View(model);
+                    }
+                   
                 }
             }
+           
             return View(model);
         }
         

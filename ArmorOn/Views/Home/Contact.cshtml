@@ -1,4 +1,5 @@
 ﻿@model ArmorOn.Models.ContactModel
+@using CaptchaMvc.HtmlHelpers 
 @{
     ViewBag.Title = "Contact";
 }
@@ -86,12 +87,13 @@
 
                         <div class="form-group">
                             @Html.LabelFor(m => m.DateNeeded)
-                            @Html.TextBoxFor(m => m.DateNeeded, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.DateNeeded, new { @class = "form-control" , @type = "date" })
                             <br />
                             <input type="file" name="fileUploader" />
                             <div class="text-center"><button type="submit" class="btn btn-default">Submit</button></div>
 
                         </div>
+                        @Html.MathCaptcha() @ViewBag.ErrorMessage 
                     }
                 </div>
             </div>
