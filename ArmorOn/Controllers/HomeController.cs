@@ -38,7 +38,7 @@ namespace ArmorOn.Controllers
             {
                 var body = "<p>Email From: {0} ({1})</p><p>Number of Uniforms: {2}</p><p>Mobile Number: {3}</p><p>Date Needed: {4}</p><p>Message:</p><p>{5}</p>";
                 var message = new MailMessage();
-                message.To.Add(new MailAddress("oliverlacap1995@gmail.com"));  // replace with valid value 
+                message.To.Add(new MailAddress("tarmor.ph@gmail.com"));  // replace with valid value 
                 message.From = new MailAddress(model.EmailAddress);  // replace with valid value
                 message.Subject = "Inquiry";
                 message.Body = string.Format(body, model.FullName, model.EmailAddress,model.NumberOfUniforms,model.MobileNumber,model.DateNeeded.ToShortDateString(),model.CustomerMessage);
@@ -54,8 +54,8 @@ namespace ArmorOn.Controllers
                     //EMAIL NG ARMOR ON
                     var credential = new NetworkCredential
                     {
-                        UserName = "oliverlacap1995@gmail.com",  // replace with valid value
-                        Password = "johnoliver"  // replace with valid value
+                        UserName = "tarmor.ph@gmail.com",  // replace with valid value
+                        Password = "tarmor_23"  // replace with valid value
                     };
                     smtp.Credentials = credential;
                     smtp.Host = "smtp.gmail.com";
